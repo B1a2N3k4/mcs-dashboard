@@ -126,8 +126,7 @@
       const user = document.getElementById("user").value;
       const pass = document.getElementById("pass").value;
 
-      // ✅ ใช้ ngrok URL
-      const res = await fetch("https://kiersten-unceasing-lahoma.ngrok-free.dev/prod-api/api/login", {
+      const res = await fetch("http://192.168.200.150/prod-api/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: user, password: pass })
@@ -140,7 +139,7 @@
         token = data.token;
         document.getElementById("status").textContent = "✅ Login success (Auto-refresh every 5s)";
         loadAllTasks();
-        setInterval(loadAllTasks, 5000); // refresh ทุก 5 วินาที
+        setInterval(loadAllTasks, 5000);
       } else {
         document.getElementById("status").textContent = "❌ Login failed";
       }
@@ -153,7 +152,7 @@
       const pageSize = 100;
 
       while (true) {
-        const res = await fetch(`https://kiersten-unceasing-lahoma.ngrok-free.dev/prod-api/api/task/task/list?pageNum=${pageNum}&pageSize=${pageSize}`, {
+        const res = await fetch(`http://192.168.200.150/prod-api/api/task/task/list?pageNum=${pageNum}&pageSize=${pageSize}`, {
           method: "GET",
           headers: { "Authorization": "Bearer " + token }
         });
@@ -177,7 +176,6 @@
       tbody.innerHTML = "";
 
       if (rows && rows.length > 0) {
-        // ✅ เอา Alarm ขึ้นก่อน
         rows.sort((a, b) => {
           if (a.isAlarm === "Y" && b.isAlarm !== "Y") return -1;
           if (a.isAlarm !== "Y" && b.isAlarm === "Y") return 1;
