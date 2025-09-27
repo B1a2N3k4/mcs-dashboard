@@ -126,9 +126,9 @@
       const user = document.getElementById("user").value;
       const pass = document.getElementById("pass").value;
 
-      const res = await fetch("http://192.168.200.150/prod-api/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+       const res = await fetch(`https://kiersten-unceasing-lahoma.ngrok-free.dev/prod-api/api/task/task/list?pageNum=${pageNum}&pageSize=${pageSize}`, {
+          method: "GET",
+          headers: { "Authorization": "Bearer " + token }
         body: JSON.stringify({ username: user, password: pass })
       });
 
