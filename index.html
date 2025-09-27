@@ -121,13 +121,13 @@
 
   <script>
     let token = null;
-    const BASE_URL = "https://kiersten-unceasing-lahoma.ngrok-free.dev/prod-api"; // ✅ ใช้ ngrok
 
     async function login() {
       const user = document.getElementById("user").value;
       const pass = document.getElementById("pass").value;
 
-      const res = await fetch(`${BASE_URL}/api/login`, {
+      // ✅ ใช้ ngrok URL
+      const res = await fetch("https://kiersten-unceasing-lahoma.ngrok-free.dev/prod-api/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: user, password: pass })
@@ -153,7 +153,7 @@
       const pageSize = 100;
 
       while (true) {
-        const res = await fetch(`${BASE_URL}/api/task/task/list?pageNum=${pageNum}&pageSize=${pageSize}`, {
+        const res = await fetch(`https://kiersten-unceasing-lahoma.ngrok-free.dev/prod-api/api/task/task/list?pageNum=${pageNum}&pageSize=${pageSize}`, {
           method: "GET",
           headers: { "Authorization": "Bearer " + token }
         });
